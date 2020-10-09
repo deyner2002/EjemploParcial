@@ -99,7 +99,20 @@ namespace Presentacion
 
         static void Eliminar()
         {
+            int numeroLiquidacion;
+            Console.WriteLine("Escriba el numero de liquidacion: "); numeroLiquidacion = int.Parse(Console.ReadLine());
+            AfiliadoService afiliadoService = new AfiliadoService();
+            try
+            {
+                Console.WriteLine(afiliadoService.Eliminar(numeroLiquidacion));
+            }
+            catch (Exception e)
+            {
 
+                Console.WriteLine(e.Message);
+            }
+
+            
         }
 
         static void Modificar()

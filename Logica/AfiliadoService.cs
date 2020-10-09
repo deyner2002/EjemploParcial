@@ -13,7 +13,7 @@ namespace Logica
         AfiliadoRepository afiliadoRepository;
         public AfiliadoService()
         {
-             afiliadoRepository= new AfiliadoRepository();
+            afiliadoRepository = new AfiliadoRepository();
         }
 
         public string Guardar(Afiliado afiliado)
@@ -45,7 +45,16 @@ namespace Logica
 
         }
 
+        public string Eliminar(int numero)
+        {
+
+            AfiliadoRepository afiliadoRepository = new AfiliadoRepository();
+
+            return afiliadoRepository.Eliminar(numero);
+
+        }
     }
+
     public class LiquidacionConsultaResponse
     {
         public List<Afiliado> Afiliados { get; set; }
@@ -62,5 +71,5 @@ namespace Logica
             Error = false;
         }
     }
-}
 
+}
