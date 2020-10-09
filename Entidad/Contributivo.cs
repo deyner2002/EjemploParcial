@@ -8,7 +8,7 @@ namespace Entidad
 {
     public class Contributivo : Afiliado
     {
-        public Contributivo(string nombre, int identificacion, char sexo, int edad, char regimen, int diasAfiliacion) : base(nombre, identificacion, sexo, edad, regimen, diasAfiliacion)
+        public Contributivo(int numero,string nombre, int identificacion, char sexo, int edad, char regimen, int diasAfiliacion) : base(numero,nombre, identificacion, sexo, edad, regimen, diasAfiliacion)
         {
 
         }

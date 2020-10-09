@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidad;
+using Logica;
 
 namespace Presentacion
 {
@@ -11,22 +12,16 @@ namespace Presentacion
     {
         static void Main(string[] args)
         {
-            Afiliado afiliado = new Contributivo("deyner", 1003380104, 'M', 15, 'C', 31);
-            Console.WriteLine(afiliado.CalcularLiquidacion(31, 15, 'M'));
+            
 
-            Afiliado afiliada = new Subsidiado("Anya", 105678789, 'F', 30, 'S', 31);
-            Console.WriteLine(afiliada.CalcularLiquidacion(31, 30, 'F'));
-
-            Console.ReadKey();
-
-            /*int opc;
+            int opc;
             do
             {
                 Console.WriteLine("1. Registrar información para liquidar");
                 Console.WriteLine("2. Consultar");
                 Console.WriteLine("3. Eliminar");
                 Console.WriteLine("4. Modificar");
-                 Console.WriteLine("0. Terminar");
+                Console.WriteLine("0. Terminar");
                 opc = int.Parse(Console.ReadLine());
                 switch (opc)
                 {
@@ -37,11 +32,48 @@ namespace Presentacion
                     case 4: Modificar(); break;
                     default: Console.WriteLine("Opcion no valida"); break;
                 }
-            } while (opc != 0);*/
+            } while (opc != 0);
         }
 
         static void RegistrarInformacionLiquidacion()
         {
+            int diasAfiliacion, identificacion, edad, regimen,numero;
+            String nombre;
+            char sexo;
+
+            Console.WriteLine("Numero de liquidacion: "); numero = int.Parse(Console.ReadLine());
+            
+            Console.WriteLine("Identificación: "); identificacion = int.Parse(Console.ReadLine());
+            Console.WriteLine("Nombre: "); nombre = Console.ReadLine();
+            Console.WriteLine("Edad: "); edad = int.Parse(Console.ReadLine());
+            Console.WriteLine("Sexo: "); sexo = char.Parse(Console.ReadLine().ToUpper());
+            Console.WriteLine("Dias afiliacion: "); diasAfiliacion = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Regimen: ");
+            do
+            {
+                Console.WriteLine("1. subsidiado");
+                Console.WriteLine("2. contributivo");
+                regimen = int.Parse(Console.ReadLine());
+            } while ((regimen != 1) && (regimen != 2));
+            if (regimen == 1 )
+            {
+                Afiliado afiliado = new Subsidiado(numero,nombre, identificacion, sexo, edad, 'S', diasAfiliacion);
+                afiliado.LiquidacionMensual = afiliado.CalcularLiquidacion(diasAfiliacion, edad, sexo);
+                AfiliadoService afiliadoService = new AfiliadoService();
+                 Console.WriteLine(afiliadoService.Guardar(afiliado));
+                
+
+            }
+            else
+            {
+                Afiliado afiliado = new Contributivo(numero,nombre, identificacion, sexo, edad, 'C', diasAfiliacion);
+                afiliado.LiquidacionMensual=afiliado.CalcularLiquidacion(diasAfiliacion, edad, sexo);
+                AfiliadoService afiliadoService = new AfiliadoService();
+                Console.WriteLine(afiliadoService.Guardar(afiliado));
+             }
+
+
 
         }
 
