@@ -12,6 +12,11 @@ namespace Entidad
         {
         }
 
+        public Subsidiado(): base()
+        {
+
+        }
+
         public override double CalcularLiquidacion(int diasAfiliacion, int edad,char sexo)
         {
             double liquidacion = 0;

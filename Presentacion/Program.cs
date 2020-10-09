@@ -79,7 +79,22 @@ namespace Presentacion
 
         static void ConsultarLista()
         {
+            AfiliadoService afiliadoService = new AfiliadoService();
+            LiquidacionConsultaResponse consultaResponse = afiliadoService.Consultar();
+            if (consultaResponse.Error)
+            {
+                Console.WriteLine(consultaResponse.Message);
 
+            }
+            else
+            {
+                foreach (var item in consultaResponse.Afiliados)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+
+            }
+            Console.ReadKey();
         }
 
         static void Eliminar()

@@ -20,6 +20,11 @@ namespace Entidad
             Numero = numero;
          }
 
+        public Afiliado()
+        {
+
+        }
+
         public int Numero { get; set; }
         public string Nombre { get; set; }
         public int Identificacion { get; set; }
@@ -34,6 +39,11 @@ namespace Entidad
         public string DameDatosFormatoArchivo()
         {
             return Numero + ";" + Identificacion + ";" + Nombre + ";" + Edad + ";" + Sexo + ";" + Regimen+";"+DiasAfiliacion+";"+LiquidacionMensual;
+        }
+
+        public override string ToString()
+        {
+            return $"numero liquidacion:{Numero}-Identificacion: {Identificacion}-Nombre: {Nombre}-Sexo: {Sexo}-edad: {Edad}- Regimen: {Regimen}-Dias de afiliacion: {DiasAfiliacion}-valor liquidacion: {LiquidacionMensual} ";
         }
     }
 }

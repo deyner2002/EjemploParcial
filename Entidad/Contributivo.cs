@@ -13,6 +13,11 @@ namespace Entidad
 
         }
 
+        public Contributivo(): base()
+        {
+
+        }
+
         public override double CalcularLiquidacion(int diasAfiliacion, int edad,char sexo)
         {
             double liquidacion=0;
